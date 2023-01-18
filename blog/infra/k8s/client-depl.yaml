@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: client
-          image: cygnetops/client-95
+          image: ghcr.io/kyh0703/client:latest
 ---
 apiVersion: v1
 kind: Service

@@ -1,3 +1,10 @@
 {
-    "commentAnchors.tagHighlights.enabled": false
+    "commentAnchors.tagHighlights.enabled": false,
+    "cloudcode.kubeconfigs": [
+        {
+            "name": "c:\\msys64\\home\\kimyeonho\\.kube\\config",
+            "configPath": "c:\\msys64\\home\\kimyeonho\\.kube\\config"
+        }
+    ],
+    "cloudcode.active-kubeconfig": "c:\\msys64\\home\\kimyeonho\\.kube\\config"
 }

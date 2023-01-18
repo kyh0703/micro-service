@@ -1,15 +1,17 @@
-apiVersion: skaffold/v2/alpha3
+apiVersion: skaffold/v3alpha1
 kind: Config
 deploy:
   kubectl:
     manifests:
       - ./infra/k8s/*
-
 build:
+  tagPolicy:
+    sha256: {}
   local:
     push: false
+    useDockerCLI: true
   artifacts:
-    - image: stephengrider/client
+    - image: ghcr.io/kyh0703/client
       context: client
       docker:
         dockerfile: Dockerfile
@@ -17,7 +19,8 @@ build:
         manual:
           - src: 'src/**/*.js'
             dest: .
-    - image: stephengrider/comments
+      kaniko:
+    - image: ghcr.io/kyh0703/comments
       context: comments
       docker:
         dockerfile: Dockerfile
@@ -25,7 +28,7 @@ build:
         manual:
           - src: '*.js'
             dest: .
-    - image: stephengrider/event-bus
+    - image: ghcr.io/kyh0703/event-bus
       context: event-bus
       docker:
         dockerfile: Dockerfile
@@ -33,7 +36,8 @@ build:
         manual:
           - src: '*.js'
             dest: .
-    - image: stephengrider/moderation
+      kaniko:
+    - image: ghcr.io/kyh0703/moderation
       context: moderation
       docker:
         dockerfile: Dockerfile
@@ -41,7 +45,8 @@ build:
         manual:
           - src: '*.js'
             dest: .
-    - image: stephengrider/posts
+      kaniko:
+    - image: ghcr.io/kyh0703/posts
       context: posts
       docker:
         dockerfile: Dockerfile
@@ -49,7 +54,8 @@ build:
         manual:
           - src: '*.js'
             dest: .
-    - image: stephengrider/query
+      kaniko:
+    - image: ghcr.io/kyh0703/query
       context: query
       docker:
         dockerfile: Dockerfile
@@ -57,3 +63,4 @@ build:
         manual:
           - src: '*.js'
             dest: .
+      kaniko:
