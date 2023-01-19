@@ -6,28 +6,28 @@ build:
   artifacts:
     - image: 100.100.103.167/kyh0703/client
       context: client
-      buildpacks:
-        builder: gcr.io/buildpacks/builder:v1
+      docker:
+        dockerfile: Dockerfile
     - image: 100.100.103.167/kyh0703/comments
       context: comments
-      buildpacks:
-        builder: gcr.io/buildpacks/builder:v1
+      docker:
+        dockerfile: Dockerfile
     - image: 100.100.103.167/kyh0703/event-bus
       context: event-bus
-      buildpacks:
-        builder: gcr.io/buildpacks/builder:v1
+      docker:
+        dockerfile: Dockerfile
     - image: 100.100.103.167/kyh0703/moderation
       context: moderation
-      buildpacks:
-        builder: gcr.io/buildpacks/builder:v1
+      docker:
+        dockerfile: Dockerfile
     - image: 100.100.103.167/kyh0703/posts
       context: posts
-      buildpacks:
-        builder: gcr.io/buildpacks/builder:v1
+      docker:
+        dockerfile: Dockerfile
     - image: 100.100.103.167/kyh0703/query
       context: query
-      buildpacks:
-        builder: gcr.io/buildpacks/builder:v1
+      docker:
+        dockerfile: Dockerfile
 manifests:
   rawYaml:
     - infra/k8s/client-depl.yaml
