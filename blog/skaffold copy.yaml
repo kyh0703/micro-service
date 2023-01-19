@@ -1,0 +1,63 @@
+apiVersion: skaffold/v3alpha1
+kind: Config
+build:
+  tagPolicy:
+    sha256: {}
+  local:
+    push: true
+    useDockerCLI: true
+  artifacts:
+    - image: 100.100.103.167/kyh0703/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.js'
+            dest: .
+    - image: 100.100.103.167/kyh0703/comments
+      context: comments
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+    - image: 100.100.103.167/kyh0703/event-bus
+      context: event-bus
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+    - image: 100.100.103.167/kyh0703/moderation
+      context: moderation
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+    - image: 100.100.103.167/kyh0703/posts
+      context: posts
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+    - image: 100.100.103.167/kyh0703/query
+      context: query
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+manifests:
+  rawYaml:
+    - ./infra/k8s/*
+deploy:
+  kubectl:
+    defaultNamespace: 'kyh'

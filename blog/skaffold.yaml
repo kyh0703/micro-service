@@ -1,66 +1,40 @@
-apiVersion: skaffold/v3alpha1
+apiVersion: skaffold/v4beta1
 kind: Config
-deploy:
-  kubectl:
-    manifests:
-      - ./infra/k8s/*
+metadata:
+  name: blog
 build:
-  tagPolicy:
-    sha256: {}
-  local:
-    push: false
-    useDockerCLI: true
   artifacts:
-    - image: ghcr.io/kyh0703/client
+    - image: 100.100.103.167/kyh0703/client
       context: client
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: 'src/**/*.js'
-            dest: .
-      kaniko:
-    - image: ghcr.io/kyh0703/comments
+      buildpacks:
+        builder: gcr.io/buildpacks/builder:v1
+    - image: 100.100.103.167/kyh0703/comments
       context: comments
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: '*.js'
-            dest: .
-    - image: ghcr.io/kyh0703/event-bus
+      buildpacks:
+        builder: gcr.io/buildpacks/builder:v1
+    - image: 100.100.103.167/kyh0703/event-bus
       context: event-bus
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: '*.js'
-            dest: .
-      kaniko:
-    - image: ghcr.io/kyh0703/moderation
+      buildpacks:
+        builder: gcr.io/buildpacks/builder:v1
+    - image: 100.100.103.167/kyh0703/moderation
       context: moderation
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: '*.js'
-            dest: .
-      kaniko:
-    - image: ghcr.io/kyh0703/posts
+      buildpacks:
+        builder: gcr.io/buildpacks/builder:v1
+    - image: 100.100.103.167/kyh0703/posts
       context: posts
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: '*.js'
-            dest: .
-      kaniko:
-    - image: ghcr.io/kyh0703/query
+      buildpacks:
+        builder: gcr.io/buildpacks/builder:v1
+    - image: 100.100.103.167/kyh0703/query
       context: query
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: '*.js'
-            dest: .
-      kaniko:
+      buildpacks:
+        builder: gcr.io/buildpacks/builder:v1
+manifests:
+  rawYaml:
+    - infra/k8s/client-depl.yaml
+    - infra/k8s/comments-depl.yaml
+    - infra/k8s/event-bus-depl.yaml
+    - infra/k8s/ingress-srv.yaml
+    - infra/k8s/moderation-depl.yaml
+    - infra/k8s/posts-depl.yaml
+    - infra/k8s/posts-srv.yaml
+    - infra/k8s/query-depl.yaml
