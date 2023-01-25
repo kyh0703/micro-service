@@ -1,0 +1,8 @@
+image:
+  repository: 100.100.103.167/kyh
+  tag: v1.2.0
+  pullPolicy: IfNotPresent
+image2:
+  repository: 100.100.103.167/kyh
+  tag: v1.2.0
+  pullPolicy: IfNotPresent

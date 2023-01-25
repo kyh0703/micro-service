@@ -1,0 +1,18 @@
+apiVersion: skaffold/v4beta1
+kind: Config
+build:
+  local:
+    push: true
+  artifacts:
+    - image: 100.100.103.167/kyh0703/auth
+      context: auth
+      docker:
+        dockerfile: DockerFile
+      sync:
+        infer: ['*.ts']
+manifests:
+  rawYaml:
+    - ./infra/k8s/*
+deploy:
+  kubectl:
+    defaultNamespace: 'kyh'

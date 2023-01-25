@@ -1,0 +1,28 @@
+GET http://100.100.106.153/api/kyh/currentuser
+
+###
+
+POST http://100.100.106.153/api/kyh/signin
+Content-Type: application/json
+
+{
+    "email": "test@naver.com"
+}
+
+###
+
+POST http://100.100.106.153/api/kyh/signout
+Content-Type: application/json
+
+{
+    "email": "test@naver.com"
+}
+
+###
+
+POST http://100.100.106.153/api/kyh/signup
+Content-Type: application/json
+
+{
+    "email": "test@naver.com"
+}
