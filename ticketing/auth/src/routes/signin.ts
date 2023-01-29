@@ -1,10 +1,11 @@
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
-import { BadRequestError } from '../../errors/bad-request-error';
+import jwt from 'jsonwebtoken';
+
+import { Password } from '../services/password';
 import { User } from '../models/user';
 import { validateRequest } from '../middlewares/validate-request';
-import { Password } from '../../services/password';
-import jwt from 'jsonwebtoken';
+import { BadRequestError } from '../errors/bad-request-error';
 
 const router = express.Router();
 
@@ -15,7 +16,7 @@ router.post(
     body('password')
       .trim()
       .notEmpty()
-      .withMessage('Password must be between 4 and 20 characters'),
+      .withMessage('You must supply a password'),
   ],
   validateRequest,
   async (req: Request, res: Response) => {
@@ -26,12 +27,12 @@ router.post(
       throw new BadRequestError('Invalid credentials');
     }
 
-    const passwordMatch = await Password.compare(
+    const passwordsMatch = await Password.compare(
       existingUser.password,
       password
     );
-    if (!passwordMatch) {
-      throw new BadRequestError('Invalid credentials');
+    if (!passwordsMatch) {
+      throw new BadRequestError('Invalid Credentials');
     }
 
     // Generate JWT
@@ -43,12 +44,12 @@ router.post(
       process.env.JWT_KEY!
     );
 
-    // Store in Session Object
+    // Store it on session object
     req.session = {
       jwt: userJwt,
     };
 
-    res.status(201).send(existingUser);
+    res.status(200).send(existingUser);
   }
 );
 
