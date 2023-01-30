@@ -8,16 +8,17 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - http:
+    - host: kyh0703.ticket.com
+      http:
         paths:
-          - path: /api/kyh/?(.*)
+          - path: /api/users/?(.*)
             pathType: Prefix
             backend:
               service:
                 name: auth-srv
                 port:
                   number: 3000
-          - path: /kyh
+          - path: /?(.*)
             pathType: Prefix
             backend:
               service:

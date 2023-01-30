@@ -15,7 +15,7 @@ build:
     - image: 100.100.103.167/kyh0703/client
       context: client
       docker:
-        dockerfile: DockerFile
+        dockerfile: Dockerfile
       sync:
         manual:
           - dest: .
