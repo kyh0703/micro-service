@@ -1,0 +1,28 @@
+GET http://100.100.106.153/api/tickets/currentuser
+
+###
+
+POST http://100.100.106.153/api/tickets/signin
+Content-Type: application/json
+
+{
+    "email": "test@naver.com"
+}
+
+###
+
+POST http://100.100.106.153/api/tickets/signout
+Content-Type: application/json
+
+{
+    "email": "test@naver.com"
+}
+
+###
+
+POST http://100.100.106.153/api/tickets/signup
+Content-Type: application/json
+
+{
+    "email": "test@naver.com"
+}
