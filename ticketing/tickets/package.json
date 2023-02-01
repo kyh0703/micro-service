@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@cygnetops/common-v2": "^1.0.8",
-    "@kyh-tickets/common": "^1.0.1",
+    "@kyh-tickets/common": "^1.0.3",
     "@types/cookie-session": "^2.0.44",
     "@types/express": "^4.17.16",
     "@types/jsonwebtoken": "^9.0.1",
@@ -26,6 +26,7 @@
     "express-validator": "^6.14.3",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.9.0",
+    "node-nats-streaming": "^0.3.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^4.9.4"
   },

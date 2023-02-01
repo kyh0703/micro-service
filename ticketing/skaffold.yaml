@@ -4,6 +4,14 @@ build:
   local:
     push: true
   artifacts:
+    - image: 100.100.103.167/kyh0703/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - dest: .
+            src: '**/*.js'
     - image: 100.100.103.167/kyh0703/auth
       context: auth
       docker:
@@ -20,14 +28,30 @@ build:
         manual:
           - dest: .
             src: 'src/**/*.ts'
-    - image: 100.100.103.167/kyh0703/client
-      context: client
+    - image: 100.100.103.167/kyh0703/orders
+      context: orders
       docker:
         dockerfile: Dockerfile
       sync:
         manual:
           - dest: .
-            src: '**/*.js'
+            src: 'src/**/*.ts'
+    - image: 100.100.103.167/kyh0703/expiration
+      context: expiration
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - dest: .
+            src: 'src/**/*.ts'
+    - image: 100.100.103.167/kyh0703/payments
+      context: payments
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - dest: .
+            src: 'src/**/*.ts'
 manifests:
   rawYaml:
     - ./infra/k8s/*
